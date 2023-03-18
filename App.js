@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { View, Text } from "react-native";
 
 export default function App() {
   /**
@@ -10,22 +10,16 @@ export default function App() {
    */
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Let's Start Reacat-Native☺️</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "#FED7C3" }}>
+        <Text>🍓</Text>
+      </View>
+      <View style={{ flex: 3, backgroundColor: "#ECD5E3" }}>
+        <Text>🫐</Text>
+      </View>
+      <View style={{ flex: 1, backgroundColor: "#CCE2CB" }}>
+        <Text>🍈</Text>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: "700",
-  },
-});
