@@ -1,5 +1,6 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function App() {
   /**
@@ -10,16 +11,50 @@ export default function App() {
    */
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: "#FED7C3" }}>
-        <Text>🍓</Text>
+    <View style={Styles.container}>
+      <StatusBar style="basic" />
+      <View style={Styles.city}>
+        <Text style={Styles.cityName}>서울</Text>
       </View>
-      <View style={{ flex: 3, backgroundColor: "#ECD5E3" }}>
-        <Text>🫐</Text>
-      </View>
-      <View style={{ flex: 1, backgroundColor: "#CCE2CB" }}>
-        <Text>🍈</Text>
+      <View style={Styles.weather}>
+        <View style={Styles.day}>
+          <Text style={Styles.temp}>17</Text>
+          <Text style={Styles.description}>☀️sunny</Text>
+        </View>
       </View>
     </View>
   );
 }
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#B4D8E7",
+  },
+  city: {
+    flex: 1.2,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cityName: {
+    fontSize: 50,
+    fontWeight: 700,
+  },
+  weather: {
+    flex: 3,
+  },
+  day: {
+    flex: 1,
+    alignItems: "center",
+  },
+  temp: {
+    marginTop: 30,
+    fontSize: 150,
+  },
+  description: {
+    marginTop: -10,
+    marginLeft: -10,
+    fontSize: 30,
+    fontWeight: 300,
+  },
+});
