@@ -9,10 +9,19 @@ import {
   Dimensions,
   ActivityIndicator,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const API_KEY = "5d5741c09fde22378b676be4c5e10c76";
+
+const icons = {
+  Clouds: "cloudy",
+  Rain: "rainy",
+  Clear: "sunny",
+  Snow: "snow",
+  Thunderstorm: "thunderstorm",
+};
 
 export default function App() {
   const [city, setCity] = useState("📍Loading...");
@@ -49,7 +58,7 @@ export default function App() {
 
   return (
     <View style={Styles.container}>
-      <StatusBar style="basic" />
+      <StatusBar style="light" />
       <View style={Styles.city}>
         <Text style={Styles.cityName}>{city}</Text>
       </View>
@@ -66,9 +75,17 @@ export default function App() {
         ) : (
           days.map((day, index) => (
             <View key={index} style={Styles.day}>
-              <Text style={Styles.temp}>
-                {parseFloat(day.temp.day).toFixed(1)}
-              </Text>
+              <View style={Styles.weatherBox}>
+                <Text style={Styles.temp}>
+                  {parseFloat(day.temp.day).toFixed(1)}
+                </Text>
+                <Ionicons
+                  name={icons[day.weather[0].main]}
+                  size={70}
+                  color="white"
+                />
+              </View>
+
               <Text style={Styles.description}>{day.weather[0].main}</Text>
               <Text style={Styles.subText}>{day.weather[0].description}</Text>
             </View>
@@ -82,34 +99,44 @@ export default function App() {
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B4D8E7",
+    backgroundColor: "#000",
   },
   city: {
-    flex: 1.2,
+    flex: 1.1,
     justifyContent: "center",
     alignItems: "center",
   },
   cityName: {
+    color: "#fff",
     fontSize: 50,
     fontWeight: 700,
   },
-  weather: {},
   day: {
-    alignItems: "center",
     width: SCREEN_WIDTH,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  weatherBox: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   temp: {
     marginTop: 30,
-    fontSize: 150,
+    color: "#fff",
+    fontSize: 130,
   },
   description: {
     marginTop: -10,
-    marginLeft: -10,
+    marginLeft: 20,
+    color: "#fff",
     fontSize: 40,
   },
   subText: {
+    marginTop: 5,
+    marginLeft: 20,
+    color: "#fff",
     fontSize: 18,
     fontWeight: 300,
-    marginTop: 5,
   },
 });
